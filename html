@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniService OS | Multi-Industry Booking & Field Operations SaaS</title>
+    <meta name="description" content="Next-generation multi-tenant booking, scheduling, field staff execution, invoicing, and automation platform for cleaning companies, barbers, hotels, and service businesses.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="saas-app dark-theme">
+
+    <!-- Application Shell -->
+    <div class="app-layout">
+        
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar" id="appSidebar">
+            <div class="sidebar-header">
+                <div class="brand-logo">
+                    <div class="brand-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div class="brand-details">
+                        <span class="brand-name">OmniService</span>
+                        <span class="brand-tagline">OPERATING SYSTEM</span>
+                    </div>
+                </div>
+                <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Toggle Sidebar">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+
+            <!-- Workspace / Business Switcher -->
+            <div class="workspace-selector-card">
+                <div class="workspace-meta">
+                    <span class="workspace-label">ACTIVE WORKSPACE</span>
+                    <div class="workspace-title-row">
+                        <span class="workspace-name" id="currentBusinessName">Apex Cleaners UK</span>
+                        <span class="badge badge-industry" id="currentIndustryBadge">Cleaning SaaS</span>
+                    </div>
+                </div>
+                <button class="btn-icon-xs" id="quickSwitchIndustryBtn" title="Switch Industry Preset">
+                    <i class="fa-solid fa-sliders"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Sections -->
+            <nav class="sidebar-nav">
+                <div class="nav-group-label">OPERATIONS</div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="#dashboard" class="nav-item active" data-view="dashboard">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span>Dashboard</span>
+                            <span class="nav-badge" id="navTodayJobsBadge">18</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#leads" class="nav-item" data-view="leads">
+                            <i class="fa-solid fa-bullseye"></i>
+                            <span>Leads & Quotes</span>
+                            <span class="nav-badge badge-warning" id="navLeadsBadge">5</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#customers" class="nav-item" data-view="customers">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Customers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#properties" class="nav-item" data-view="properties">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span id="navPropertiesLabel">Properties & Units</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#jobs" class="nav-item" data-view="jobs">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Jobs & Bookings</span>
+                            <span class="nav-badge badge-danger" id="navUnassignedBadge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#calendar" class="nav-item" data-view="calendar">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span>Live Calendar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#agent" class="nav-item" data-view="agent" id="sidebarAgentNavBtn">
+                            <i class="fa-solid fa-robot"></i>
+                            <span>AI Agent Ops</span>
+                            <span class="nav-badge badge-indigo">Auto</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-group-label">MANAGEMENT</div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="#team" class="nav-item" data-view="team">
+                            <i class="fa-solid fa-id-badge"></i>
+                            <span id="navTeamLabel">Staff & Cleaners</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#services" class="nav-item" data-view="services">
+                            <i class="fa-solid fa-tags"></i>
+                            <span>Services & Pricing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#invoices" class="nav-item" data-view="invoices">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                            <span>Invoices & Stripe</span>
+                            <span class="nav-badge badge-danger" id="navOverdueBadge">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#automations" class="nav-item" data-view="automations">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Automation Engine</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#reports" class="nav-item" data-view="reports">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span>Reports & KPIs</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-group-label">SYSTEM</div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="#settings" class="nav-item" data-view="settings">
+                            <i class="fa-solid fa-gear"></i>
+                            <span>Settings & Presets</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Bottom Mobile Portal Launcher & User Card -->
+            <div class="sidebar-footer">
+                <button class="btn btn-mobile-sim" id="launchMobileAppBtn">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span>Staff Mobile View</span>
+                </button>
+                <div class="user-profile-badge">
+                    <div class="user-avatar" id="currentRoleAvatar">BO</div>
+                    <div class="user-info">
+                        <span class="user-name" id="currentUserName">Alex Morgan</span>
+                        <span class="user-role" id="currentUserRoleTitle">Business Owner</span>
+                    </div>
+                    <button class="btn-icon-xs" id="cycleRoleBtn" title="Switch Testing Role (Owner / Admin / Cleaner)">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace Area -->
+        <div class="main-wrapper">
+            
+            <!-- Global Top Bar -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <button class="mobile-nav-toggle" id="mobileMenuToggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="page-breadcrumb">
+                        <span class="breadcrumb-root">Operations</span>
+                        <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
+                        <span class="breadcrumb-current" id="breadcrumbPageTitle">Dashboard</span>
+                    </div>
+                </div>
+
+                <div class="top-bar-center">
+                    <div class="global-search-bar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="globalSearchInput" placeholder="Search customers, jobs, invoices, addresses... (Press '/' to focus)">
+                    </div>
+                </div>
+
+                <div class="top-bar-right">
+                    <!-- Quick Industry Preset Switcher -->
+                    <div class="industry-quick-select">
+                        <label for="industrySelector"><i class="fa-solid fa-briefcase"></i> Mode:</label>
+                        <select id="industrySelector">
+                            <option value="cleaning">Cleaning Company</option>
+                            <option value="barber">Barber / Grooming Salon</option>
+                            <option value="hotel">Hotel & Hospitality</option>
+                            <option value="general">Multi-Service Operating</option>
+                        </select>
+                    </div>
+
+                    <!-- Autonomous Agent Execution Trigger Button -->
+                    <button class="btn btn-agent-pulse btn-sm" id="launchAgentModalBtn" title="Launch Autonomous Operations Agent">
+                        <i class="fa-solid fa-robot"></i>
+                        <span>Agent Execution</span>
+                        <span class="agent-live-dot"></span>
+                    </button>
+
+                    <!-- Primary Action Dropdown -->
+                    <div class="action-dropdown-wrapper">
+                        <button class="btn btn-primary btn-sm" id="quickActionDropdownBtn">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Quick Action</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu" id="quickActionDropdownMenu">
+                            <a href="#" class="dropdown-item" id="quickAddJobBtn"><i class="fa-solid fa-calendar-plus"></i> New Job / Booking</a>
+                            <a href="#" class="dropdown-item" id="quickAddLeadBtn"><i class="fa-solid fa-user-plus"></i> New Lead</a>
+                            <a href="#" class="dropdown-item" id="quickAddCustomerBtn"><i class="fa-solid fa-address-book"></i> New Customer</a>
+                            <a href="#" class="dropdown-item" id="quickCreateInvoiceBtn"><i class="fa-solid fa-file-invoice"></i> Create Invoice</a>
+                        </div>
+                    </div>
+
+                    <!-- Role Simulator Indicator -->
+                    <div class="role-chip" id="currentRoleChip" title="Click to cycle permission roles">
+                        <span class="status-dot active"></span>
+                        <span id="activeRoleLabel">Owner Mode</span>
+                    </div>
+
+                    <!-- Notifications Dropdown -->
+                    <div class="notification-wrapper">
+                        <button class="btn-icon" id="notificationBtn" title="Activity & Automations">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="notification-badge" id="notificationCount">4</span>
+                        </button>
+                        <div class="notification-panel" id="notificationPanel">
+                            <div class="panel-header">
+                                <h4>Live System Automations & Alerts</h4>
+                                <button class="btn-text-xs" id="clearNotificationsBtn">Clear</button>
+                            </div>
+                            <div class="notification-list" id="notificationList">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Operational Content Container -->
+            <main class="content-container">
+                
+                <!-- VIEW 1: DASHBOARD -->
+                <section class="app-view active" id="view-dashboard">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Operational Command Centre</h1>
+                            <p class="view-subtitle">Real-time pulse of jobs, revenue, staff assignment, and customer pipelines.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-agent-pulse" id="dashLaunchAgentBtn"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Agent Auto-Triage</button>
+                            <button class="btn btn-secondary" id="seedDemoDataBtn"><i class="fa-solid fa-arrows-rotate"></i> Reload Realistic Data</button>
+                            <button class="btn btn-primary" id="openNewJobModalBtn"><i class="fa-solid fa-plus"></i> Schedule Job</button>
+                        </div>
+                    </div>
+
+                    <!-- KPI Cards (Spec Section 5.1 & 6.2) -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrap primary"><i class="fa-solid fa-calendar-day"></i></div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">JOBS TODAY</span>
+                                <div class="kpi-value-row">
+                                    <h3 class="kpi-value" id="kpiJobsToday">18</h3>
+                                    <span class="trend-badge positive"><i class="fa-solid fa-arrow-up"></i> 100% on track</span>
+                                </div>
+                                <span class="kpi-meta" id="kpiJobsBreakdown">11 Completed · 4 In Progress</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrap success"><i class="fa-solid fa-sterling-sign"></i></div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">REVENUE TODAY</span>
+                                <div class="kpi-value-row">
+                                    <h3 class="kpi-value" id="kpiRevenueToday">£840.00</h3>
+                                    <span class="trend-badge positive"><i class="fa-solid fa-arrow-trend-up"></i> +18% vs avg</span>
+                                </div>
+                                <span class="kpi-meta" id="kpiAvgTicket">Avg ticket £76.30</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrap warning"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">OUTSTANDING REVENUE</span>
+                                <div class="kpi-value-row">
+                                    <h3 class="kpi-value" id="kpiOutstanding">£260.00</h3>
+                                    <span class="trend-badge warning"><i class="fa-solid fa-triangle-exclamation"></i> 2 Overdue</span>
+                                </div>
+                                <span class="kpi-meta">Chased via Stripe auto-reminders</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrap info"><i class="fa-solid fa-user-plus"></i></div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">NEW LEADS</span>
+                                <div class="kpi-value-row">
+                                    <h3 class="kpi-value" id="kpiNewLeads">5</h3>
+                                    <span class="trend-badge positive">3 Ready to Quote</span>
+                                </div>
+                                <span class="kpi-meta">64% conversion this month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Grid: Unassigned Jobs + Recurring Jobs + Activity Feed -->
+                    <div class="dashboard-grid">
+                        
+                        <!-- Unassigned Jobs Alert Section -->
+                        <div class="card card-warning-accent">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+                                    <h3>Unassigned Jobs Requiring Staff</h3>
+                                </div>
+                                <span class="badge badge-warning" id="dashUnassignedCount">3 Needing Staff</span>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="data-table" id="unassignedJobsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Job / Service</th>
+                                                <th>Customer & Location</th>
+                                                <th>Scheduled Time</th>
+                                                <th>Value</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="unassignedJobsTableBody">
+                                            <!-- Dynamically injected -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Today's Operations Overview -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <h3>Today's Live Operations</h3>
+                                </div>
+                                <div class="card-pills">
+                                    <span class="pill pill-success" id="pillCompleted">11 Done</span>
+                                    <span class="pill pill-info" id="pillInProgress">4 In Progress</span>
+                                    <span class="pill pill-warning" id="pillPending">3 Unassigned</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="progress-bar-stacked">
+                                    <div class="progress-segment bg-success" style="width: 61%" title="61% Completed"></div>
+                                    <div class="progress-segment bg-info" style="width: 22%" title="22% In Progress"></div>
+                                    <div class="progress-segment bg-warning" style="width: 17%" title="17% Unassigned"></div>
+                                </div>
+                                <div class="mini-jobs-list" id="todayJobsMiniList">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Recurring Jobs Engine Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="fa-solid fa-repeat text-indigo"></i>
+                                    <h3>Automated Recurring Schedules</h3>
+                                </div>
+                                <button class="btn btn-secondary btn-xs" id="runRecurringEngineBtn">
+                                    <i class="fa-solid fa-play"></i> Generate Next Run
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-caption">Rules automatically generating upcoming weekly, biweekly, and monthly recurring visits.</p>
+                                <div class="recurring-summary-grid">
+                                    <div class="mini-stat">
+                                        <span class="stat-digit" id="statActiveRecurring">47</span>
+                                        <span class="stat-text">Active Schedules</span>
+                                    </div>
+                                    <div class="mini-stat">
+                                        <span class="stat-digit" id="statWeeklyCount">29</span>
+                                        <span class="stat-text">Weekly</span>
+                                    </div>
+                                    <div class="mini-stat">
+                                        <span class="stat-digit" id="statBiweeklyCount">18</span>
+                                        <span class="stat-text">Bi-weekly</span>
+                                    </div>
+                                </div>
+                                <div class="recurring-preview-list" id="recurringPreviewList">
+                                    <!-- Injected dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Audit & Automation Activity Feed -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="fa-solid fa-wave-square"></i>
+                                    <h3>Live Activity & Automation Log</h3>
+                                </div>
+                                <span class="badge badge-muted">Real-time</span>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="activity-feed" id="activityFeedList">
+                                    <!-- Injected dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- VIEW 2: LEADS & PIPELINE -->
+                <section class="app-view" id="view-leads">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Leads & Quotes Pipeline</h1>
+                            <p class="view-subtitle">Track prospects from inquiry to quote, and convert them to customers in 1 click.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="openNewLeadModalBtn"><i class="fa-solid fa-plus"></i> New Lead</button>
+                        </div>
+                    </div>
+
+                    <!-- Pipeline Stage Badges -->
+                    <div class="pipeline-status-bar" id="leadPipelineFilterBar">
+                        <button class="filter-pill active" data-lead-filter="all">All Leads (<span id="countLeadAll">0</span>)</button>
+                        <button class="filter-pill" data-lead-filter="New">New (<span id="countLeadNew">0</span>)</button>
+                        <button class="filter-pill" data-lead-filter="Contacted">Contacted (<span id="countLeadContacted">0</span>)</button>
+                        <button class="filter-pill" data-lead-filter="Quote Sent">Quote Sent (<span id="countLeadQuoteSent">0</span>)</button>
+                        <button class="filter-pill" data-lead-filter="Won">Won (<span id="countLeadWon">0</span>)</button>
+                        <button class="filter-pill" data-lead-filter="Lost">Lost (<span id="countLeadLost">0</span>)</button>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="data-table" id="leadsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Prospect Name</th>
+                                            <th>Service Requested</th>
+                                            <th>Location / Postcode</th>
+                                            <th>Estimated Value</th>
+                                            <th>Source</th>
+                                            <th>Status</th>
+                                            <th>Created / Activity</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="leadsTableBody">
+                                        <!-- Dynamically generated -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 3: CUSTOMERS -->
+                <section class="app-view" id="view-customers">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Customer Directory</h1>
+                            <p class="view-subtitle">Manage customer profiles, multiple properties, service history, and health status.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="openNewCustomerModalBtn"><i class="fa-solid fa-plus"></i> Add Customer</button>
+                        </div>
+                    </div>
+
+                    <div class="table-toolbar">
+                        <div class="search-input-wrapper">
+                            <i class="fa-solid fa-search"></i>
+                            <input type="text" id="customerSearchInput" placeholder="Search by name, email, phone...">
+                        </div>
+                        <div class="filter-group">
+                            <select id="customerHealthFilter">
+                                <option value="all">All Health Statuses</option>
+                                <option value="active">Active</option>
+                                <option value="overdue">Overdue Balance</option>
+                                <option value="at-risk">At-Risk</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="data-table" id="customersTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer</th>
+                                            <th>Phone & Contact</th>
+                                            <th>Properties</th>
+                                            <th>Health Status</th>
+                                            <th>Total Spent</th>
+                                            <th>Last Service</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="customersTableBody">
+                                        <!-- Populated dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 4: PROPERTIES / LOCATIONS / UNITS -->
+                <section class="app-view" id="view-properties">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title" id="propertiesPageTitle">Properties & Service Locations</h1>
+                            <p class="view-subtitle">Store access codes, alarm info, key lockboxes, and site notes for each customer location.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="openNewPropertyModalBtn"><i class="fa-solid fa-plus"></i> Add Property</button>
+                        </div>
+                    </div>
+
+                    <div class="properties-grid" id="propertiesCardsContainer">
+                        <!-- Populated dynamically -->
+                    </div>
+                </section>
+
+                <!-- VIEW 5: JOBS & BOOKINGS -->
+                <section class="app-view" id="view-jobs">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Jobs & Scheduled Visits</h1>
+                            <p class="view-subtitle">Manage one-off and recurring visits, handle cleaner assignments, and prevent double-booking.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="jobsViewCreateBtn"><i class="fa-solid fa-calendar-plus"></i> New Job</button>
+                        </div>
+                    </div>
+
+                    <div class="table-toolbar">
+                        <div class="filter-group">
+                            <select id="jobStatusFilter">
+                                <option value="all">All Statuses</option>
+                                <option value="Scheduled">Scheduled</option>
+                                <option value="Confirmed">Confirmed</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+
+                            <select id="jobStaffFilter">
+                                <option value="all">All Staff Members</option>
+                                <!-- Injected dynamically -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="data-table" id="jobsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Job # / Service</th>
+                                            <th>Customer & Location</th>
+                                            <th>Date & Time</th>
+                                            <th>Duration</th>
+                                            <th>Assigned Staff</th>
+                                            <th>Status</th>
+                                            <th>Price</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="jobsTableBody">
+                                        <!-- Dynamically injected -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 6: LIVE CALENDAR -->
+                <section class="app-view" id="view-calendar">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Operational Calendar</h1>
+                            <p class="view-subtitle">Visual day and week scheduling grid with staff assignments and conflict detection.</p>
+                        </div>
+                        <div class="view-actions">
+                            <div class="calendar-view-toggles">
+                                <button class="btn btn-sm btn-secondary active" id="calendarViewWeekBtn">Week View</button>
+                                <button class="btn btn-sm btn-secondary" id="calendarViewDayBtn">Day View</button>
+                            </div>
+                            <button class="btn btn-primary btn-sm" id="calendarAddBookingBtn"><i class="fa-solid fa-plus"></i> Book Slot</button>
+                        </div>
+                    </div>
+
+                    <div class="calendar-nav-bar">
+                        <button class="btn-icon-xs" id="calPrevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                        <h3 class="calendar-current-label" id="calendarCurrentLabel">This Week (Mon - Sun)</h3>
+                        <button class="btn-icon-xs" id="calNextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+
+                    <div class="calendar-wrapper">
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Populated dynamically with days & schedule cards -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 7: TEAM & STAFF -->
+                <section class="app-view" id="view-team">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title" id="teamPageTitle">Staff & Field Team</h1>
+                            <p class="view-subtitle">Manage cleaners, stylists, technicians, working hours, and active assignments.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="openNewStaffModalBtn"><i class="fa-solid fa-user-plus"></i> Add Team Member</button>
+                        </div>
+                    </div>
+
+                    <div class="team-cards-grid" id="teamCardsGrid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </section>
+
+                <!-- VIEW 8: SERVICES & PRICING -->
+                <section class="app-view" id="view-services">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Services & Pricing Catalog</h1>
+                            <p class="view-subtitle">Configure bookable services, default durations, standard rates, and add-ons.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="openNewServiceModalBtn"><i class="fa-solid fa-plus"></i> Add Service</button>
+                        </div>
+                    </div>
+
+                    <div class="services-grid" id="servicesGrid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </section>
+
+                <!-- VIEW 9: INVOICES & STRIPE PAYMENTS -->
+                <section class="app-view" id="view-invoices">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Invoices & Payment Processing</h1>
+                            <p class="view-subtitle">Generate invoices from completed jobs, track balances, and process payments via Stripe.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="invoicesViewCreateBtn"><i class="fa-solid fa-plus"></i> Create Invoice</button>
+                        </div>
+                    </div>
+
+                    <div class="invoices-kpi-bar">
+                        <div class="inv-mini-kpi">
+                            <span class="inv-kpi-lbl">TOTAL BILLED</span>
+                            <span class="inv-kpi-val" id="invTotalBilled">£3,420.00</span>
+                        </div>
+                        <div class="inv-mini-kpi">
+                            <span class="inv-kpi-lbl">COLLECTED VIA STRIPE</span>
+                            <span class="inv-kpi-val text-success" id="invTotalCollected">£3,160.00</span>
+                        </div>
+                        <div class="inv-mini-kpi">
+                            <span class="inv-kpi-lbl">OVERDUE BALANCE</span>
+                            <span class="inv-kpi-val text-danger" id="invTotalOverdue">£260.00</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="data-table" id="invoicesTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Invoice #</th>
+                                            <th>Customer</th>
+                                            <th>Associated Job</th>
+                                            <th>Due Date</th>
+                                            <th>Subtotal / Tax</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="invoicesTableBody">
+                                        <!-- Populated dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 10: AUTOMATION ENGINE -->
+                <section class="app-view" id="view-automations">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Automation Engine & Scheduled Events</h1>
+                            <p class="view-subtitle">Automatic reminder emails, review request triggers, recurring job generation, and webhook logs.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="triggerAllAutomationsBtn"><i class="fa-solid fa-bolt"></i> Run Automation Queue</button>
+                        </div>
+                    </div>
+
+                    <div class="automations-layout">
+                        <!-- Active Rules Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="fa-solid fa-sliders"></i>
+                                    <h3>Active Automation Rules (V1 Scope)</h3>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="rules-list" id="automationRulesList">
+                                    <!-- Dynamically populated -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Scheduled Events & Retry Log -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="fa-solid fa-list-check"></i>
+                                    <h3>Automation Execution & Audit Queue</h3>
+                                </div>
+                                <span class="badge badge-indigo">Idempotent</span>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="data-table" id="automationEventsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Trigger Event</th>
+                                                <th>Target Customer / Job</th>
+                                                <th>Action Dispatched</th>
+                                                <th>Scheduled For</th>
+                                                <th>Status & Retries</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="automationEventsTableBody">
+                                            <!-- Dynamically injected -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 11: REPORTS & KPIS -->
+                <section class="app-view" id="view-reports">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Operational Reports & Analytics</h1>
+                            <p class="view-subtitle">High-level business health, staff performance metrics, and lead-to-won conversion ratios.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary" id="exportDataJsonBtn"><i class="fa-solid fa-download"></i> Export Data (JSON)</button>
+                        </div>
+                    </div>
+
+                    <div class="reports-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Revenue Performance by Service Type</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-bar-container" id="revenueBarChart">
+                                    <!-- Visual CSS Bar representation -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Staff Workload & Job Completion Leaderboard</h3>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Staff Member</th>
+                                                <th>Completed Jobs</th>
+                                                <th>Revenue Handled</th>
+                                                <th>Rating</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="staffReportsTableBody">
+                                            <!-- Injected dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 12: SETTINGS & INDUSTRY PRESETS -->
+                <section class="app-view" id="view-settings">
+                    <div class="view-header">
+                        <div>
+                            <h1 class="view-title">Business Settings & Industry Presets</h1>
+                            <p class="view-subtitle">Configure business identity, regional settings (UK Timezone & GBP), and industry workflows.</p>
+                        </div>
+                        <div class="view-actions">
+                            <button class="btn btn-primary" id="saveBusinessSettingsBtn"><i class="fa-solid fa-check"></i> Save Settings</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-grid">
+                        <!-- Industry Preset Switcher -->
+                        <div class="card card-featured">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-indigo"></i>
+                                    <h3>Industry Preset & Terminology Switcher</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-caption">Instantly configure terminology, default services, and workflows tailored for your business vertical:</p>
+                                <div class="industry-preset-cards">
+                                    <div class="preset-card active" data-preset="cleaning">
+                                        <div class="preset-icon"><i class="fa-solid fa-broom"></i></div>
+                                        <h4>Cleaning Company</h4>
+                                        <p>Domestic, deep clean, end-of-tenancy, property access codes, cleaners roster.</p>
+                                        <span class="preset-tag">Selected</span>
+                                    </div>
+
+                                    <div class="preset-card" data-preset="barber">
+                                        <div class="preset-icon"><i class="fa-solid fa-scissors"></i></div>
+                                        <h4>Barber & Salon</h4>
+                                        <p>Cuts, beard grooming, deluxe packages, barber chairs, appointment intervals.</p>
+                                        <span class="preset-tag">Switch</span>
+                                    </div>
+
+                                    <div class="preset-card" data-preset="hotel">
+                                        <div class="preset-icon"><i class="fa-solid fa-hotel"></i></div>
+                                        <h4>Hotel & Hospitality</h4>
+                                        <p>Room turnover, guest services, suite prep, housekeeping staff, check-in schedules.</p>
+                                        <span class="preset-tag">Switch</span>
+                                    </div>
+
+                                    <div class="preset-card" data-preset="general">
+                                        <div class="preset-icon"><i class="fa-solid fa-toolbox"></i></div>
+                                        <h4>Multi-Service Field Ops</h4>
+                                        <p>Combined services, general dispatch, versatile units, multi-skilled staff.</p>
+                                        <span class="preset-tag">Switch</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Business Profile Form -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Business Information</h3>
+                            </div>
+                            <div class="card-body">
+                                <form id="businessSettingsForm" class="form-grid">
+                                    <div class="form-group">
+                                        <label for="settingBizName">Company Name</label>
+                                        <input type="text" id="settingBizName" value="Apex Cleaners UK Ltd" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="settingOwnerName">Owner / Administrator Name</label>
+                                        <input type="text" id="settingOwnerName" value="Alex Morgan" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="settingCurrency">Billing Currency</label>
+                                        <select id="settingCurrency">
+                                            <option value="GBP" selected>GBP (£) - United Kingdom</option>
+                                            <option value="USD">USD ($) - United States</option>
+                                            <option value="EUR">EUR (€) - European Union</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="settingTimezone">Timezone</label>
+                                        <select id="settingTimezone">
+                                            <option value="Europe/London" selected>Europe/London (GMT/BST)</option>
+                                            <option value="America/New_York">America/New_York (EST)</option>
+                                            <option value="Europe/Paris">Europe/Paris (CET)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="settingTaxRate">Default Tax / VAT (%)</label>
+                                        <input type="number" id="settingTaxRate" value="20" min="0" max="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="settingWorkHours">Operating Hours</label>
+                                        <input type="text" id="settingWorkHours" value="08:00 - 18:00 (Mon - Sat)">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- System Reset & Demo Data Controls -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Data Management & Seed Controls</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-caption">Non-production environment controls per Specification Section 6.1.</p>
+                                <div class="action-buttons-row">
+                                    <button class="btn btn-secondary" id="resetToDefaultDataBtn">
+                                        <i class="fa-solid fa-rotate-left"></i> Reset to Factory Seed Data
+                                    </button>
+                                    <button class="btn btn-danger" id="clearAllDataBtn">
+                                        <i class="fa-solid fa-trash-can"></i> Clear All Storage
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 13: AUTONOMOUS AI AGENT OPERATIONS -->
+                <section class="app-view" id="view-agent">
+                    <div class="view-header">
+                        <div>
+                            <div class="agent-title-row">
+                                <h1 class="view-title">Autonomous AI Operations Agent</h1>
+                                <span class="agent-live-badge"><span class="agent-pulse-dot"></span> AGENT ACTIVE</span>
+                            </div>
+                            <p class="view-subtitle">Autonomous reasoning engine executing dispatch triage, lead qualification, conflict resolution, and revenue protection.</p>
+                        </div>
+                        <div class="view-actions">
+                            <div class="autopilot-toggle-card">
+                                <div class="autopilot-label">
+                                    <span>Auto-Pilot Cycle</span>
+                                    <small id="autopilotStatusText">Disabled</small>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="agentAutopilotToggle">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <button class="btn btn-agent-pulse" id="agentQuickTriageBtn"><i class="fa-solid fa-play"></i> Run Agent Triage</button>
+                        </div>
+                    </div>
+
+                    <!-- Agent Health & Opportunity Stats -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrap primary"><i class="fa-solid fa-microchip"></i></div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">AGENT REASONING STATE</span>
+                                <div class="kpi-value-row">
+                                    <h3 class="kpi-value" id="agentStatState">Ready</h3>
+                                    <span class="badge badge-success">Standby</span>
+                                </div>
+                                <span class="kpi-meta" id="agentStatEngine">Gemini 3.8 Flash Agentic Dispatch</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrap warning"><i class="fa-solid fa-user-clock"></i></div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">UNASSIGNED BOTTLENECKS</span>
+                                <div class="kpi-value-row">
+                                    <h3 class="kpi-value" id="agentStatUnassigned">3</h3>
+                                    <span class="badge badge-warning">Action Needed</span>
+                                </div>
+                                <span class="kpi-meta">Optimal staff matches ready</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrap info"><i class="fa-solid fa-user-check"></i></div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">CONVERTIBLE LEADS</span>
+                                <div class="kpi-value-row">
+                                    <h3 class="kpi-value" id="agentStatLeads">2</h3>
+                                    <span class="badge badge-info">Qualified</span>
+                                </div>
+                                <span class="kpi-meta">High probability to convert</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card">
+                            <div class="kpi-icon-wrap danger"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">RECOVERABLE OVERDUE</span>
+                                <div class="kpi-value-row">
+                                    <h3 class="kpi-value" id="agentStatOverdue">£260.00</h3>
+                                    <span class="badge badge-danger">2 Invoices</span>
+                                </div>
+                                <span class="kpi-meta">Ready for automated Stripe chase</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2-Column Agent Layout: Mission Deck + Live Terminal -->
+                    <div class="agent-command-layout">
+                        <!-- Mission Control Form -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="fa-solid fa-compass-drafting text-indigo"></i>
+                                    <h3>Mission Control & Autonomous Objectives</h3>
+                                </div>
+                                <span class="badge badge-indigo">Policy Compliant</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-caption">Select a predefined operational goal or provide custom natural language instructions:</p>
+
+                                <div class="agent-mission-selector">
+                                    <div class="mission-option-card active" data-goal="full_triage">
+                                        <div class="mission-radio-circle"><i class="fa-solid fa-check"></i></div>
+                                        <div class="mission-content">
+                                            <strong>Full Autonomous Triage (Recommended)</strong>
+                                            <p>Scans schedule, assigns staff to unassigned visits, converts qualified leads, and triggers overdue invoice recovery.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mission-option-card" data-goal="dispatch_jobs">
+                                        <div class="mission-radio-circle"><i class="fa-solid fa-check"></i></div>
+                                        <div class="mission-content">
+                                            <strong>Smart Staff Dispatch & Conflict Prevention</strong>
+                                            <p>Matches unassigned jobs with optimal staff based on location, ratings, and shift conflict detection.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mission-option-card" data-goal="convert_leads">
+                                        <div class="mission-radio-circle"><i class="fa-solid fa-check"></i></div>
+                                        <div class="mission-content">
+                                            <strong>Inbound Lead Outreach & Conversion</strong>
+                                            <p>Processes new/quoted leads, creates customer records with property addresses, and books first visit.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mission-option-card" data-goal="recover_invoices">
+                                        <div class="mission-radio-circle"><i class="fa-solid fa-check"></i></div>
+                                        <div class="mission-content">
+                                            <strong>Revenue Protection & Stripe Dunning</strong>
+                                            <p>Identifies overdue invoices, generates Stripe payment links, and queues polite SMS/email reminders.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mission-option-card" data-goal="recurring_cycles">
+                                        <div class="mission-radio-circle"><i class="fa-solid fa-check"></i></div>
+                                        <div class="mission-content">
+                                            <strong>Recurring Schedule Optimization</strong>
+                                            <p>Autonomously checks recurring schedules (weekly/bi-weekly) and generates upcoming visits without duplicate entries.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Custom Instruction Box -->
+                                <div class="custom-prompt-wrapper">
+                                    <label for="agentCustomPromptInput">Or Enter Custom Directive for Agent:</label>
+                                    <div class="prompt-input-row">
+                                        <input type="text" id="agentCustomPromptInput" placeholder="e.g. Assign Emma to all cleanings today, and convert Eleanor Vance...">
+                                    </div>
+                                </div>
+
+                                <div class="agent-launch-row">
+                                    <button class="btn btn-agent-pulse btn-lg btn-block" id="executeAgentMissionBtn">
+                                        <i class="fa-solid fa-microchip"></i>
+                                        <span>Execute Agent Mission</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Agent Terminal Console -->
+                        <div class="card card-terminal">
+                            <div class="terminal-header">
+                                <div class="terminal-controls">
+                                    <span class="control-dot red"></span>
+                                    <span class="control-dot yellow"></span>
+                                    <span class="control-dot green"></span>
+                                </div>
+                                <div class="terminal-title">
+                                    <i class="fa-solid fa-terminal"></i>
+                                    <span>agent-execution-runtime: ~</span>
+                                </div>
+                                <div class="terminal-actions">
+                                    <button class="btn-text-xs" id="clearTerminalBtn"><i class="fa-solid fa-trash-can"></i> Clear</button>
+                                </div>
+                            </div>
+                            <div class="terminal-body" id="agentTerminalBody">
+                                <div class="term-line term-system"><span class="term-tag">[SYSTEM]</span> Agent Runtime v2.4 initialized. Ready to execute directives.</div>
+                                <div class="term-line term-dim"><span class="term-tag">[INFO]</span> Waiting for operator trigger or autonomous heartbeat...</div>
+                            </div>
+                            <div class="terminal-footer">
+                                <div class="term-status-indicator">
+                                    <span class="term-pulse-led" id="termLed"></span>
+                                    <span id="termStatusText">AGENT STANDBY</span>
+                                </div>
+                                <span class="term-meta" id="termMetaOps">0 operations in queue</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 1: NEW JOB / BOOKING MODAL (With Schedule Conflict Warning)           -->
+    <!-- ========================================================================= -->
+    <div class="modal-overlay" id="newJobModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <i class="fa-solid fa-calendar-plus text-indigo"></i>
+                    <h3 class="modal-title">Schedule New Job / Booking</h3>
+                </div>
+                <button class="modal-close-btn" data-close-modal="newJobModal">&times;</button>
+            </div>
+            <form id="newJobForm">
+                <div class="modal-body">
+                    <!-- Dynamic Conflict Warning Banner -->
+                    <div class="alert-banner alert-warning hidden" id="jobConflictAlert">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span id="jobConflictAlertText">Conflict detected: Staff member is already booked during this time window!</span>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="jobCustomerSelect">Customer *</label>
+                            <select id="jobCustomerSelect" required>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="jobPropertySelect">Property / Service Location *</label>
+                            <select id="jobPropertySelect" required>
+                                <!-- Populated dynamically based on chosen customer -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobServiceSelect">Service Item *</label>
+                            <select id="jobServiceSelect" required>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobStaffSelect">Assigned Staff Member</label>
+                            <select id="jobStaffSelect">
+                                <option value="">-- Unassigned (Assign Later) --</option>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobDateInput">Scheduled Date *</label>
+                            <input type="date" id="jobDateInput" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobTimeInput">Start Time *</label>
+                            <input type="time" id="jobTimeInput" value="09:00" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobDurationInput">Duration (Minutes)</label>
+                            <input type="number" id="jobDurationInput" value="120" step="15" min="15">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobPriceInput">Agreed Price (£) *</label>
+                            <input type="number" id="jobPriceInput" value="65.00" step="0.50" min="0" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="jobFrequencySelect">Recurring Schedule</label>
+                            <select id="jobFrequencySelect">
+                                <option value="one-off">One-off Job</option>
+                                <option value="weekly">Weekly Recurring</option>
+                                <option value="biweekly">Bi-weekly Recurring (Every 2 weeks)</option>
+                                <option value="monthly">Monthly Recurring</option>
+                            </select>
+                            <span class="field-hint">Automated recurring scheduler will generate future visits according to the handoff spec.</span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="jobNotesInput">Special Instructions / Job Notes</label>
+                            <textarea id="jobNotesInput" rows="2" placeholder="e.g. Focus on kitchen grease, key under plant pot, dog in back room."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-close-modal="newJobModal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveJobSubmitBtn"><i class="fa-solid fa-calendar-check"></i> Confirm & Schedule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 2: NEW LEAD MODAL                                                   -->
+    <!-- ========================================================================= -->
+    <div class="modal-overlay" id="newLeadModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <i class="fa-solid fa-bullseye text-indigo"></i>
+                    <h3 class="modal-title">Record New Inbound Lead</h3>
+                </div>
+                <button class="modal-close-btn" data-close-modal="newLeadModal">&times;</button>
+            </div>
+            <form id="newLeadForm">
+                <div class="modal-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="leadName">Prospect Full Name *</label>
+                            <input type="text" id="leadName" placeholder="e.g. Eleanor Vance" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leadEmail">Email Address *</label>
+                            <input type="email" id="leadEmail" placeholder="eleanor@example.co.uk" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leadPhone">Phone Number *</label>
+                            <input type="tel" id="leadPhone" placeholder="+44 7700 900123" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leadPostcode">Postcode / City *</label>
+                            <input type="text" id="leadPostcode" placeholder="SW1A 1AA, London" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leadService">Requested Service *</label>
+                            <select id="leadService" required>
+                                <!-- Injected dynamically -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="leadValue">Estimated Value (£)</label>
+                            <input type="number" id="leadValue" value="85.00" step="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="leadSource">Acquisition Source</label>
+                            <select id="leadSource">
+                                <option value="Website Form">Website Form</option>
+                                <option value="Google Search / Maps">Google Search / Maps</option>
+                                <option value="WhatsApp Direct">WhatsApp Direct</option>
+                                <option value="Referral">Customer Referral</option>
+                                <option value="Social Media">Instagram / Facebook</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="leadInitialStatus">Initial Pipeline Status</label>
+                            <select id="leadInitialStatus">
+                                <option value="New" selected>New Inquiry</option>
+                                <option value="Contacted">Contacted</option>
+                                <option value="Quote Sent">Quote Sent</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-close-modal="newLeadModal">Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Save Lead</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 3: CONVERT LEAD TO CUSTOMER & PROPERTY MODAL (Spec Section 3.1)       -->
+    <!-- ========================================================================= -->
+    <div class="modal-overlay" id="convertLeadModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <i class="fa-solid fa-user-check text-success"></i>
+                    <h3 class="modal-title">Convert Lead to Customer & Property</h3>
+                </div>
+                <button class="modal-close-btn" data-close-modal="convertLeadModal">&times;</button>
+            </div>
+            <form id="convertLeadForm">
+                <input type="hidden" id="convertLeadId">
+                <div class="modal-body">
+                    <div class="alert-banner alert-info">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>This will atomically create a <strong>Customer Account</strong>, a <strong>Property Location</strong>, and optionally generate their <strong>First Scheduled Job</strong> without duplication.</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Customer Name</label>
+                            <input type="text" id="convertCustomerName" readonly class="input-readonly">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="convertCustomerEmail" readonly class="input-readonly">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="convertPropertyAddress">Property Street Address *</label>
+                            <input type="text" id="convertPropertyAddress" placeholder="e.g. 42 Kensington Park Road" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="convertPropertyPostcode">Postcode *</label>
+                            <input type="text" id="convertPropertyPostcode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="convertAccessNotes">Key Safe / Access Instructions</label>
+                            <input type="text" id="convertAccessNotes" placeholder="Lockbox code 4821 by side gate">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="convertCreateFirstJob" checked>
+                                <span>Immediately schedule first service job for this customer</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-close-modal="convertLeadModal">Cancel</button>
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-check-double"></i> Complete Conversion</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 4: STRIPE PAYMENT SIMULATOR MODAL (Spec Section 11)                   -->
+    <!-- ========================================================================= -->
+    <div class="modal-overlay" id="stripePaymentModal">
+        <div class="modal-card modal-card-sm">
+            <div class="modal-header">
+                <div class="stripe-badge-header">
+                    <span class="stripe-logo"><i class="fa-brands fa-stripe text-indigo"></i> Stripe Checkout</span>
+                    <span class="badge badge-indigo">Test Mode</span>
+                </div>
+                <button class="modal-close-btn" data-close-modal="stripePaymentModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="stripe-summary-box">
+                    <div class="stripe-amount-row">
+                        <span>Invoice Balance Due</span>
+                        <strong class="stripe-total-amount" id="stripeModalAmount">£65.00</strong>
+                    </div>
+                    <div class="stripe-meta-row">
+                        <span id="stripeModalInvNumber">INV-2026-004</span>
+                        <span id="stripeModalCustomer">Sarah Jenkins</span>
+                    </div>
+                </div>
+
+                <form id="stripePaymentForm">
+                    <input type="hidden" id="stripePayInvoiceId">
+                    <div class="form-group">
+                        <label>Card Information (Test Card Auto-Filled)</label>
+                        <div class="mock-card-input-box">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <input type="text" id="mockCardNumber" value="4242 •••• •••• 4242" readonly>
+                            <span class="card-brand">VISA</span>
+                        </div>
+                    </div>
+                    <div class="form-row-grid">
+                        <div class="form-group">
+                            <label>Expiry</label>
+                            <input type="text" value="12/28" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>CVC</label>
+                            <input type="text" value="123" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cardholder Name</label>
+                        <input type="text" id="mockCardHolder" value="Customer Name" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" id="stripeSubmitPayBtn">
+                        <i class="fa-solid fa-lock"></i> Pay <span id="stripeBtnPayAmount">£65.00</span>
+                    </button>
+                </form>
+
+                <div class="stripe-security-notice">
+                    <i class="fa-solid fa-shield-halved"></i> 256-Bit Encrypted · PCI-DSS Compliant via Stripe Webhooks
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 5: STAFF / CLEANER MOBILE SIMULATION PORTAL (Spec Section 6 & 16)    -->
+    <!-- ========================================================================= -->
+    <div class="modal-overlay modal-mobile-sim-overlay" id="staffMobileModal">
+        <div class="phone-simulator-frame">
+            <div class="phone-speaker"></div>
+            <div class="phone-screen">
+                
+                <!-- Phone Top Bar -->
+                <div class="phone-status-bar">
+                    <span class="phone-time" id="phoneClock">09:41</span>
+                    <div class="phone-icons">
+                        <i class="fa-solid fa-wifi"></i>
+                        <i class="fa-solid fa-battery-full"></i>
+                    </div>
+                </div>
+
+                <!-- Phone Header -->
+                <div class="phone-header">
+                    <div class="phone-user-chip">
+                        <div class="phone-avatar" id="mobileStaffAvatar">EM</div>
+                        <div>
+                            <h4 id="mobileStaffName">Emma Watson</h4>
+                            <span class="phone-sub-role" id="mobileStaffRole">Field Staff</span>
+                        </div>
+                    </div>
+                    <button class="phone-close-btn" data-close-modal="staffMobileModal" title="Close Phone Simulator">&times;</button>
+                </div>
+
+                <!-- Phone Content Area -->
+                <div class="phone-content" id="phoneContent">
+                    <div class="phone-today-summary">
+                        <span class="phone-date-label" id="phoneTodayLabel">Today's Assigned Jobs</span>
+                        <span class="phone-jobs-count" id="phoneJobsCount">3 Jobs</span>
+                    </div>
+
+                    <!-- Phone Job Cards Container -->
+                    <div class="phone-jobs-list" id="phoneJobsList">
+                        <!-- Populated dynamically with active jobs for assigned cleaner -->
+                    </div>
+                </div>
+
+                <!-- Phone Bottom Tab Bar -->
+                <div class="phone-tab-bar">
+                    <button class="phone-tab-btn active"><i class="fa-solid fa-list-check"></i><span>Jobs</span></button>
+                    <button class="phone-tab-btn"><i class="fa-solid fa-clock"></i><span>Hours</span></button>
+                    <button class="phone-tab-btn"><i class="fa-solid fa-user"></i><span>Profile</span></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 6: AGENT EXECUTION POPUP MODAL                                      -->
+    <!-- ========================================================================= -->
+    <div class="modal-overlay" id="agentExecutionModal">
+        <div class="modal-card modal-card-agent">
+            <div class="modal-header agent-modal-header">
+                <div class="modal-title-wrap">
+                    <div class="agent-avatar-glow"><i class="fa-solid fa-robot"></i></div>
+                    <div>
+                        <h3 class="modal-title">Autonomous AI Operations Agent</h3>
+                        <span class="agent-sub-status"><span class="agent-pulse-dot"></span> Ready for Autonomous Execution</span>
+                    </div>
+                </div>
+                <button class="modal-close-btn" data-close-modal="agentExecutionModal">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="agent-modal-quick-bar">
+                    <select id="modalAgentGoalSelect">
+                        <option value="full_triage">Full Autonomous Triage (Recommended)</option>
+                        <option value="dispatch_jobs">Smart Staff Dispatch (Assign All Unassigned)</option>
+                        <option value="convert_leads">Inbound Lead Auto-Conversion</option>
+                        <option value="recover_invoices">Revenue Protection (Chase Overdue via Stripe)</option>
+                        <option value="recurring_cycles">Recurring Schedule Job Generation</option>
+                    </select>
+                    <button class="btn btn-agent-pulse btn-sm" id="modalExecuteAgentBtn">
+                        <i class="fa-solid fa-play"></i> Execute
+                    </button>
+                </div>
+
+                <!-- Terminal window inside modal -->
+                <div class="terminal-body terminal-body-modal" id="modalAgentTerminalBody">
+                    <div class="term-line term-system"><span class="term-tag">[SYSTEM]</span> Agent Runtime v2.4 active. Model: Gemini 3.8 Flash Agentic.</div>
+                    <div class="term-line term-dim"><span class="term-tag">[INFO]</span> Select a goal above or click Execute to run the autonomous triage cycle.</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-close-modal="agentExecutionModal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm" id="modalGoToAgentViewBtn"><i class="fa-solid fa-expand"></i> Open Full Mission Control</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Hub -->
+    <div class="toast-hub" id="toastHub"></div>
+
+    <!-- Core Application Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
